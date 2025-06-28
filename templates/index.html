@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Recurrence Predictor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center text-primary">Thyroid Recurrence Predictor</h2>
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" name="Age" step="0.1" class="form-control" required>
+            </div>
+            {% for field, options in {
+                'Gender': ['F', 'M'],
+                'Smoking': ['Yes', 'No'],
+                'Smoking History': ['Yes', 'No'],
+                'Radiotherapy History': ['Yes', 'No'],
+                'Thyroid Function': ['Euthyroid','Clinical Hyperthyroidism','Clinical Hypothyroidism','Subclinical Hyperthyroidism','Subclinical Hypothyroidism'],
+                'Physical Examination': ['Single nodular goiter-left','Single nodular goiter-right','Multinodular goiter','Diffuse goiter','Normal'],
+                'Adenopathy': ['No Lympth Adenopathy','Right Side Body Adenopathy','Left Side Body Adenopathy','Posterior','Bilateral','Extensive and Widespread'],
+                'Types of Thyroid Cancer (Pathology)': ['Micropapillary','Papillary','Follicular','Hurthel cell'],
+                'Focality': ['Uni-Focal','Multi-Focal'],
+                'Risk': ['Low','Intermediate','High'],
+                'Tumor': ['tumor that is 1 cm or smaller','tumor larger than 1 cm but not larger than 2 cm','tumor larger than 2 cm but not larger than 4 cm','tumor larger than 4 cm','tumor that has grown outside the thyroid','tumor that has invaded nearby structures'],
+                'Lymph Nodes': ['no evidence of regional lymph node metastasis','regional lymph node metastasis in the central  of the neck','regional lymph node metastasis in the lateral of the neck'],
+                'Cancer Metastasis': ['no evidence of distant metastasis','the presence of distant metastasis'],
+                'Stage': ['First-Stage','Second-Stage','Third-Stage','IVA','IVB'],
+                'Treatment Response': ['Excellent','Indeterminate','Structural Incomplete','Biochemical Incomplete']
+            }.items() %}
+            <div class="form-group">
+                <label>{{ field }}:</label>
+                <select name="{{ field }}" class="form-control">
+                    {% for option in options %}
+                    <option>{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endfor %}
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div class="alert alert-info mt-4 text-center">
+            <h4>Prediction: {{ prediction }}</h4>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
