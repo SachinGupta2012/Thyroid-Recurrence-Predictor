@@ -97,6 +97,12 @@ Go to: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ## ✅ Model Evaluation Results
 
+XGBoost | Accuracy: 0.9740 | F1 Score: 0.9524
+LogisticRegression | Accuracy: 0.9610 | F1 Score: 0.9302
+RandomForest | Accuracy: 0.9740 | F1 Score: 0.9524
+SVM | Accuracy: 0.9481 | F1 Score: 0.9091
+KNN | Accuracy: 0.9351 | F1 Score: 0.8889
+
 | Metric         | Score     |
 |----------------|-----------|
 | Accuracy       | 97.4%     |
